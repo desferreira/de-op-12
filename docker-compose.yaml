@@ -14,5 +14,15 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/03/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/05/prometheus.yml:/etc/prometheus/prometheus.yml
       - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/03/data:/prometheus
+      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/05/alert.rules.yml:/etc/prometheus/alert.rules.yml
+  alertmanager:
+      image: prom/alertmanager
+      restart: unless-stopped
+      ports:
+        - "9093:9093"
+      volumes:
+        - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/05/config:/config
+        - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/05/data:/data
+      command: --config.file=/config/alertmanager.yml --log.level=debug

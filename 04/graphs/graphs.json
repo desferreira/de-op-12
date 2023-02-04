@@ -31,7 +31,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "LvmHvh0Vk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -81,7 +81,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "LvmHvh0Vk"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
           "expr": "sum(jvm_memory_used_bytes)*100/sum(jvm_memory_max_bytes)",
@@ -97,7 +97,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "LvmHvh0Vk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -145,7 +145,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "LvmHvh0Vk"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
           "expr": "jvm_buffer_count_buffers",
@@ -161,7 +161,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "LvmHvh0Vk"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -214,7 +214,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "LvmHvh0Vk"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
           "expr": "process_uptime_seconds",
@@ -230,7 +230,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "LvmHvh0Vk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -307,7 +307,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "LvmHvh0Vk"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
           "exemplar": false,

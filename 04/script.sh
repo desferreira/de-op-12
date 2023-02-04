@@ -1,0 +1,1 @@
+curl http://localhost:3000/api/datasources -H 'Authorization: Basic YWRtaW46YWRtaW4=' | jq '.[].uid' 

@@ -6,11 +6,13 @@ services:
     ports:
       - 3000:3000
     user: '104'
+    volumes:
+      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/04/provisioning:/etc/grafana/provisioning
 
   prometheus:
     image: prom/prometheus
     ports:
       - 9090:9090
     volumes:
-      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/02/prometheus.yml:/etc/prometheus/prometheus.yml
-      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/02/data:/prometheus
+      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/03/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/03/data:/prometheus

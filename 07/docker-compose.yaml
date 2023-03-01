@@ -28,10 +28,11 @@ services:
       - graylog
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
-    image: graylog/graylog:4.2
+    image: graylog/graylog:5.0.3
     #journal and config directories in local NFS share for persistence
     volumes:
       - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/07/data/graylog:/usr/share/graylog/data/journal
+      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/07/config/graylog.conf:/usr/share/graylog/data/config/graylog.conf
     environment:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=somepasswordpepper

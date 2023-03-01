@@ -20,5 +20,6 @@
 
 
 ## Running
+```
 docker run -p 9090:9090 -v /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/02/prometheus.yml:/etc/prometheus/prometheus.yml -v /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/02/data:/prometheus prom/prometheus
-
+```

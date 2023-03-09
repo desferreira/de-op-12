@@ -21,5 +21,6 @@
 
 ## Running
 ```
-docker run -p 9090:9090 -v /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/02/prometheus.yml:/etc/prometheus/prometheus.yml -v /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/02/data:/prometheus prom/prometheus
+docker run -p 9090:9090 -v $(pwd)/02/prometheus.yml:/etc/prometheus/prometheus.yml -v $(pwd)/02/data:/prometheus prom/prometheus
+docker run -p 9090:9090 -v $(pwd)/02/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 ```

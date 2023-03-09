@@ -11,11 +11,6 @@ provider "aws" {
   region     = "us-east-1"
 }
 
-# resource "aws_instance" "example" {
-#   ami           = "ami-2757f631"
-#   instance_type = "t2.micro"
-# }
-
 # 1. Create vpc
 resource "aws_vpc" "dev-vpc" {
 cidr_block = "172.16.1.0/25"
@@ -191,9 +186,5 @@ resource "aws_instance" "web-server-instance" {
 
 
 output "server_public_ip" {
-  value = aws_instance.web-server-instance.public_ip
-}
-
-output "server_id" {
-  value = aws_instance.web-server-instance.id
+  value = aws_eip.one.public_ip
 }

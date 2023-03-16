@@ -1,5 +1,8 @@
-for i in $(seq 1 100);
+a=0
+until [ ! $a -lt 150 ]
 do
-    sleep 5
-    echo "Sending message $i" | nc localhost 1514
+    echo "Sending message $a"
+    echo "{\"message\": \"$a\"}" | nc localhost 1514
+    sleep 1
+     a=`expr $a + 1`
 done

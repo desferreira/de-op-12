@@ -8,7 +8,7 @@ receivers:
     email_configs:
       - smarthost: 'smtp.gmail.com:587'
         auth_username: 'digowx@gmail.com'
-        auth_password: "minhasenha"
+        auth_password: "bmzgplilvkjkemsg"
         from: 'digowx@gmail.com'
         to: 'diegoferreira4@hotmail.com'
         send_resolved: true

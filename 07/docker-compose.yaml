@@ -2,18 +2,18 @@ version: '2'
 services:
   # MongoDB: https://hub.docker.com/_/mongo/
   mongodb:
-    image: mongo
+    image: mongo:5.0
     networks:
       - graylog
   #DB in share for persistence
-    volumes:
-      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/07/data/mongo:/data/db
+    # volumes:
+    #   - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/07/data/mongo:/data/db
    # Elasticsearch: https://www.elastic.co/guide/en/elasticsearch/reference/7.10/docker.html
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
     #data folder in share for persistence
-    volumes:
-      - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/07/data/elastic:/usr/share/elasticsearch/data
+    # volumes:
+    #   - /Users/ferreirad/Documents/Jobs/TI/Ada/Aulas/DE-OP-012-Observability/07/data/elastic:/usr/share/elasticsearch/data
     environment:
       - http.host=0.0.0.0
       - transport.host=localhost

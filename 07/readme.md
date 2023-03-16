@@ -4,6 +4,12 @@
 - http://localhost:8080/hello/error
 
 
+## Syslog TCP para shell
+- port 1514
+
+## GELF UDP para java, 
+- port 12201
+
 ## Pesquisas
 
 - message:BAD_REQUEST => qualquer coisa que contenha bad request

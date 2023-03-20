@@ -23,6 +23,7 @@
 - node_disk_write_errors_total => número de rros de escrita em disco
 - node_cpu_seconds_total => tempo de cpu
 - node_filesystem_avail_bytes => espaço em disco
+- node_filesystem_avail_bytes{device="/dev/disk3s5"} => espaço em disco no mac
 - node_memory_total_bytes => memoria total
 - node_memory_swap_total_bytes => memoria em swap
 - node_memory_free_bytes => memória livre
@@ -43,12 +44,9 @@
 - sum(jvm_memory_used_bytes{area="heap"}) => memória total do heap
 - sum(jvm_memory_max_bytes{area="heap"}) => memória total disponível para o heap
 - sum(jvm_memory_used_bytes{area="heap"}) / sum(jvm_memory_max_bytes{area="heap"})
-
 - jvm_gc_pause_seconds_sum => tempo total "em pausa" para o garbage collector
 - jvm_gc_pause_seconds_count => total de pausas por causa do garbage collector
-
 - jvm_gc_pause_seconds_max => tempo máximo parado para gc
-
 - jvm_threads_states_threads => quantidade de threads da jvm
 
 ## Running

@@ -31,3 +31,7 @@ infra-as-code/terraform*
 node_exporter/
 
 Up*
+
+roteiro.md
+
+pdfs/*

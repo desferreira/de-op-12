@@ -17,8 +17,7 @@
 - Etendimento sobre Dashboards
 
 
-## O que eu quero
-
+## Divisão dos conteúdos
 
 - Pilares da Observabilidade
 
@@ -49,9 +48,3 @@
 - Trabalhando com Dashboards
 
 - Trabalhando com Filtros no Graylog
-
-
-## Divisão das aulas
-
-### 01
-Falar sobre o que observability, falar sobre os pilares: log, métricas e tracing. Falar das ferramentas

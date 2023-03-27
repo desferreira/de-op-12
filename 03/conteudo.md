@@ -1,7 +1,18 @@
 ## Links interessantes
 
+- https://prometheus.io/docs/concepts/metric_types/
+- https://prometheus.io/docs/practices/histograms/
+- https://medium.com/mercari-engineering/have-you-been-using-histogram-metrics-correctly-730c9547a7a9
+- https://prometheus.io/docs/prometheus/latest/querying/basics/
+- https://logz.io/blog/promql-examples-introduction/
+- https://www.containiq.com/post/promql-cheat-sheet-with-examples
+- https://www.alibabacloud.com/blog/pull-or-push-how-to-select-monitoring-systems_599007
+
+## Links com métricas
+
 - http://localhost:9090/metrics => mostra as métricas do prometheus
 - http://localhost:8080/actuator/prometheus => métricas aplicacionais
+- http://localhost:9100/metrics => métricas do node exporter
 
 - Arquivo de configuração: prometheus.yaml
 
@@ -14,11 +25,43 @@
 - summary
 - counter
 
+### Tipos de "valores" 
+- Floats (mostly scalars) => valor cru da métrica
+- Range vectors => valor de uma métrica em um determinado período de tempo
+- Instant vectors => valor de uma métrica ao longo do tempo
+### Pesquisas
+
+#### Teoria / Sintaxes
+- nome_da_metrica{label1="valor1",label2="valor2"}[filtro_de_tempo] 
+- access_log{job!=”apache2”} => pesquisa de diferença
+- http_total_requests{job=”prometheus”,method!=”GET”} => pesquisa de match exato
+- http_total_requests{job=!~".prom*"} => pesquisa de diferença com regex
+- http_total_requests{job=~".prom*",environment=~”} => pesquisa de math com regex
+
+#### Prática
+- prometheus_http_requests_total{status!~"4.."} => todos os request que não sejam da linha dos 400
+- prometheus_http_requests_total{job=~".*server"} => todos os request que são o job termina com .server
+- prometheus_http_requests_total{code=~"2.*|4.*"} => todos os requsts com status code 200 ou 400
+
+#### Operadores
+- "+" => soma
+- "–" => subtração
+- "*" => multiplicação
+- "/" => divisão
+- "%" => porcentagem
+- "^" => expoente
+
 ### Funções
-- rate():  function in PromQL takes the history of metrics over a time frame and calculates how fast value is increasing per second. Rate is applicable on counter values only.
+- month(): retorna o mês
+- day_of_month(): retorna o dia do mês
+- rate():  function in PromQL takes the history of metrics over a time frame and calculates how fast value is increasing per second. Rate is applicable on counter values only. 
 - sum(): soma de valores
+- avg_over_time(): semelhante ao rate, mas funciona com "gauges" também.
 
-
+## Prometheus
+- prometheus_http_request_duration_seconds_sum: é um instant vector
+- prometheus_http_request_duration_seconds_sum[1m]: é um range vector
+- rate(prometheus_http_request_duration_seconds_sum[1m]) / rate(prometheus_http_request_duration_seconds_count[1m]) => taxa de tempo total gasto nos endpoints e o total de requests
 ## PC
 - node_disk_write_errors_total => número de rros de escrita em disco
 - node_cpu_seconds_total => tempo de cpu

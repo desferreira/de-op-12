@@ -106,7 +106,7 @@ resource "aws_security_group" "allow_web" {
   }
 
   ingress {
-    description = "HTTP"
+    description = "java"
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
@@ -122,7 +122,7 @@ resource "aws_security_group" "allow_web" {
   }
 
     ingress {
-    description = "SSH"
+    description = "graylog"
     from_port   = 9000
     to_port     = 9000
     protocol    = "tcp"
@@ -130,7 +130,23 @@ resource "aws_security_group" "allow_web" {
   }
 
       ingress {
-    description = "SSH"
+    description = "nodexporter"
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+      ingress {
+    description = "prometheus"
+    from_port   = 9090
+    to_port     = 9090
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+      ingress {
+    description = "alertmanager"
     from_port   = 9093
     to_port     = 9093
     protocol    = "tcp"
@@ -138,7 +154,7 @@ resource "aws_security_group" "allow_web" {
   }
 
       ingress {
-    description = "SSH"
+    description = "grafana"
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"

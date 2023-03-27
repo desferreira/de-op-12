@@ -2,10 +2,10 @@
 sudo yum update -y
 
 # Install helpers
-sudo yum install yum-utils telnet -y
+sudo yum install yum-utils telnet make -y
 
-# Install Java
-sudo yum install java-11-openjdk-devel -y
+# Install Java and Go
+sudo yum install java-11-openjdk-devel go -y
 
 # Install Docker
 sudo yum-config-manager \

@@ -1,19 +1,19 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
     }
   }
 }
 
 provider "aws" {
-  profile    = "ada"
-  region     = "us-east-1"
+  profile = "ada"
+  region  = "us-east-1"
 }
 
 # 1. Create vpc
 resource "aws_vpc" "dev-vpc" {
-cidr_block = "172.16.1.0/25"
+  cidr_block = "172.16.1.0/25"
   tags = {
     Name = "dev"
   }
@@ -45,9 +45,9 @@ resource "aws_route_table" "dev-route-table" {
 
 # 4. Create a Public Subnet
 resource "aws_subnet" "public-subnet" {
-  count = length(var.public_subnets)
+  count             = length(var.public_subnets)
   vpc_id            = aws_vpc.dev-vpc.id
-  cidr_block = var.public_subnets[count.index]
+  cidr_block        = var.public_subnets[count.index]
   availability_zone = var.subnets_availability_zones[count.index]
 
   tags = {
@@ -58,7 +58,7 @@ resource "aws_subnet" "public-subnet" {
 
 # 5. Associate subnet with Route Table
 resource "aws_route_table_association" "a" {
-  count = length(var.public_subnets)
+  count          = length(var.public_subnets)
   subnet_id      = aws_subnet.public-subnet[count.index].id
   route_table_id = aws_route_table.dev-route-table.id
 }
@@ -66,23 +66,23 @@ resource "aws_route_table_association" "a" {
 
 # 7. Create a network interface with an ip in the subnet that was created in step 4
 resource "aws_network_interface" "web-server-nic" {
-  count = length(var.public_subnets)
+  count           = length(var.public_subnets)
   subnet_id       = aws_subnet.public-subnet[count.index].id
   security_groups = [aws_security_group.allow_web.id]
 }
 
 # 8. Assign an elastic IP to the network interface created in step 7
 resource "aws_eip" "one" {
-  vpc                       = true
-  network_interface         = aws_network_interface.web-server-nic[0].id
-  depends_on                = [aws_internet_gateway.gw, aws_instance.web-server-instance]
+  vpc               = true
+  network_interface = aws_network_interface.web-server-nic[0].id
+  depends_on        = [aws_internet_gateway.gw, aws_instance.web-server-instance]
 }
 
 
 resource "aws_subnet" "private-subnet" {
-  count = length(var.private_subnets)
+  count             = length(var.private_subnets)
   vpc_id            = aws_vpc.dev-vpc.id
-  cidr_block = var.private_subnets[count.index]
+  cidr_block        = var.private_subnets[count.index]
   availability_zone = var.subnets_availability_zones[count.index]
 
   tags = {
@@ -94,7 +94,7 @@ resource "aws_subnet" "private-subnet" {
 resource "aws_security_group" "allow_web" {
   name        = "allow_web_traffic"
   description = "Allow Web inbound traffic"
-  vpc_id = aws_vpc.dev-vpc.id
+  vpc_id      = aws_vpc.dev-vpc.id
 
 
   ingress {
@@ -121,7 +121,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-    ingress {
+  ingress {
     description = "graylog"
     from_port   = 9000
     to_port     = 9000
@@ -129,7 +129,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-      ingress {
+  ingress {
     description = "nodexporter"
     from_port   = 9100
     to_port     = 9100
@@ -137,7 +137,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-      ingress {
+  ingress {
     description = "prometheus"
     from_port   = 9090
     to_port     = 9090
@@ -145,7 +145,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-      ingress {
+  ingress {
     description = "alertmanager"
     from_port   = 9093
     to_port     = 9093
@@ -153,7 +153,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-      ingress {
+  ingress {
     description = "grafana"
     from_port   = 3000
     to_port     = 3000
@@ -186,12 +186,16 @@ resource "aws_instance" "web-server-instance" {
   instance_type     = "t2.medium"
   availability_zone = "us-east-1a"
   key_name          = "test"
+    root_block_device {
+    volume_size = 60
+    volume_type = "gp2"
+  }
 
   network_interface {
     device_index         = 0
     network_interface_id = aws_network_interface.web-server-nic[0].id
   }
-  
+
   user_data = file("scripts/startup.sh")
 
 
@@ -199,8 +203,6 @@ resource "aws_instance" "web-server-instance" {
     Name = "DE-OP-012-Observability"
   }
 }
-
-
 output "server_public_ip" {
   value = aws_eip.one.public_ip
 }

@@ -70,7 +70,6 @@
 - node_memory_total_bytes => memoria total
 - node_memory_swap_total_bytes => memoria em swap
 - node_memory_free_bytes => memória livre
-
 ## Java
 ### Métricas interessantes de rede
 - http_server_requests_seconds_count => número de requests 
@@ -95,4 +94,5 @@
 ## Running
 ```
 docker run -p 9090:9090 -v $(pwd)/02/prometheus.yml:/etc/prometheus/prometheus.yml -v $(pwd)/02/data:/prometheus prom/prometheus
+docker run -d --net="host" --pid="host" -v "/:/host:ro,rslave" quay.io/prometheus/node-exporter:latest --path.rootfs=/
 ```

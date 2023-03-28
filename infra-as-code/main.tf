@@ -182,8 +182,8 @@ resource "aws_security_group" "allow_web" {
 
 # 9. Create Centos server
 resource "aws_instance" "web-server-instance" {
-  ami               = "ami-06640050dc3f556bb" # Ubuntu 18.04
-  instance_type     = "t2.micro"
+  ami               = "ami-016eb5d644c333ccb" # Centos
+  instance_type     = "t2.medium"
   availability_zone = "us-east-1a"
   key_name          = "test"
 
@@ -196,7 +196,7 @@ resource "aws_instance" "web-server-instance" {
 
 
   tags = {
-    Name = "web-server"
+    Name = "DE-OP-012-Observability"
   }
 }
 

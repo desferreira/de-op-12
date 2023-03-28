@@ -4,6 +4,6 @@ datasources:
     type: prometheus
     # Access mode - proxy (server in the UI) or direct (browser in the UI).
     access: proxy
-    url: http://host.docker.internal:9090
+    url: http://host.docker.internal:9090 # trocar por 172.17.0.1 se for executar em linux
     jsonData:
       httpMethod: POST

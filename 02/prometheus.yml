@@ -24,7 +24,7 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
 
     static_configs:
-      - targets: ['host.docker.internal:8080']
+      - targets: ['host.docker.internal:8080'] # trocar por 172.17.0.1 se for executar em linux
         labels:
           group: 'production'
 
@@ -32,4 +32,4 @@ scrape_configs:
   # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 1s
     static_configs:
-      - targets: ['host.docker.internal:9100']
+      - targets: ['host.docker.internal:9100'] # trocar por 172.17.0.1 se for executar em linux

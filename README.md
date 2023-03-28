@@ -48,3 +48,12 @@
 - Trabalhando com Dashboards
 
 - Trabalhando com Filtros no Graylog
+
+
+## Utilizando tudo que tem nesse repo
+```
+iniciar o prometheus: docker run -p 9090:9090 -v $(pwd)/02/prometheus.yml:/etc/prometheus/prometheus.yml -d prom/prometheus
+iniciar o grafana: docker run -d -p 3000:3000 grafana/grafana-oss
+iniciar o graylog: cd 07 ; docker compose up -d
+
+```

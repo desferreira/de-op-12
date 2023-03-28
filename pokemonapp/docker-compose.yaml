@@ -8,8 +8,6 @@ services:
     image: "postgres"
     ports:
       - 5432:5432
-    volumes:
-      - /Users/ferreirad/Documents/Jobs/TI/Ada/Meetups/data:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=123456
       - POSTGRES_USER=letscode%

@@ -6,8 +6,8 @@ services:
     ports:
       - 3000:3000
     user: '104'
-    volumes:
-      - "./04/provisioning:/etc/grafana/provisioning"
+#   volumes:
+#      - "./04/provisioning:/etc/grafana/provisioning"
   prometheus:
     image: prom/prometheus
     ports:

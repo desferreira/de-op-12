@@ -27,7 +27,7 @@ public class HelloController {
 
     @GetMapping("/error")
     public static ResponseEntity<String> simulateError() {
-        LOG.severe("Bad Request");
+        LOG.severe("Bad Request create user");
         return ResponseEntity.badRequest().body("Error on request");
     }
 

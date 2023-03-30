@@ -1,18 +1,31 @@
+global:
+  # The smarthost and SMTP sender used for mail notifications.
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'digowx@gmail.com'
+  smtp_auth_username: 'digowx@gmail.com'
+  smtp_auth_password: 'minhasenha'
+
 route:
-  receiver: 'mail'
   repeat_interval: 4h
   group_by: [ alertname ]
+  routes:
+    - matchers:
+        - severity="critical"
+      receiver: critical
+    - matchers:
+        - severity="warning"
+      receiver: warning
 
 receivers:
-  - name: 'mail'
+  - name: 'critical'
     email_configs:
-      - smarthost: 'smtp.gmail.com:587'
-        auth_username: 'digowx@gmail.com'
-        auth_password: "bmzgplilvkjkemsg"
-        from: 'digowx@gmail.com'
-        to: 'diegoferreira4@hotmail.com'
+      - to: 'diegoferreira4@hotmail.com'
         send_resolved: true
 
+  - name: 'warning'
+    email_configs:
+      - to: 'digowx@gmail.com'
+        send_resolved: true
 # global:
 #   # The smarthost and SMTP sender used for mail notifications.
 #   smtp_smarthost: 'localhost:25'

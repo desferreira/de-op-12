@@ -7,7 +7,7 @@
 ## Syslog TCP para shell
 - port 1514
 
-## GELF UDP para java, 
+## GELF TCP para java, 
 - port 12201
 
 ## Pesquisas

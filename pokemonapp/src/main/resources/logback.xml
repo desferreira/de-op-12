@@ -1,27 +1,28 @@
 <configuration>
 
-    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
-    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
-    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
-    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
-
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <param name="graylogHost" value="172.17.0.1:12201"/>
+        <param name="originHost" value="172.17.0.1"/>
+        <param name="graylogPort" value="12201"/>
+        <param name="extractStacktrace" value="true"/>
+        <param name="addExtendedInformation" value="true"/>
+        <param name="facility" value="log4j"/>
+        <param name="Threshold" value="INFO"/>
+        <param name="additionalFields" value="{'environment': 'DEV', 'application': 'PokemonApp'}"/>
         <encoder>
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
+    <appender name="GELF" class="de.siegmar.logbackgelf.GelfTcpAppender">
         <graylogHost>localhost</graylogHost>
         <graylogPort>12201</graylogPort>
     </appender>
 
     <!-- Console output log level -->
-    <root level="trace">
+    <root level="TRACE">
         <appender-ref ref="GELF" />
         <appender-ref ref="STDOUT" /> <appender-ref ref="STDOUT" />
     </root>
-
 
 </configuration>

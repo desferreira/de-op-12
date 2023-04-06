@@ -1,6 +1,6 @@
 <appender name="graylog" class="org.graylog2.log.GelfAppender">
-    <param name="graylogHost" value="<GRAYLOG IP>"/>
-    <param name="originHost" value="localhost"/>
+    <param name="graylogHost" value="172.17.0.1:12201"/>
+    <param name="originHost" value="172.17.0.1"/>
     <param name="graylogPort" value="12201"/>
     <param name="extractStacktrace" value="true"/>
     <param name="addExtendedInformation" value="true"/>
